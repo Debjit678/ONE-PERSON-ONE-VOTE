@@ -1,0 +1,44 @@
+================================================================================
+Frontend Architecture & Features Report
+================================================================================
+
+1. LANGUAGES AND TECHNOLOGIES USED (AND WHY)
+--------------------------------------------------------------------------------
+- Next.js (React Framework): Used as the robust backbone of the application. Next.js handles routing (via the modern App Router), Server-Side Rendering (SSR), and optimization. It allows the app to be fast, SEO-friendly, and structure complex pages easily.
+- TypeScript: Replaces raw JavaScript. It adds static structural typing, meaning almost all bugs related to data flow and variables are caught during development instead of in production. It makes the codebase robust and self-documenting.
+- Tailwind CSS v4: A utility-first CSS framework used for all styling. It allows rapid UI development directly in the markup without needing to write custom CSS rules, while ensuring responsiveness and consistency across the app.
+- Framer Motion & GSAP: Specialized libraries used for creating the highly interactive, smooth user interface—such as the complex custom Spiral animation on the landing page and page transitions.
+- Three.js / @react-three/fiber: Used for the lightweight 3D graphics on the canvas (e.g., the background paths and canvas reveal effects), giving the frontend a premium, modern aesthetic.
+- Recharts: A composable charting library built on React components. Chosen specifically to visually display the live election results dynamically to the users.
+- Custom UI Primitives (Radix UI / shadcn-like): Used to build accessible, unstyled core components (buttons, dialogs) cleanly.
+
+2. FRONTEND FEATURES
+--------------------------------------------------------------------------------
+- Interactive Landing Page: Includes the interactive spiral animation, quick access tiles, and dynamic theme switching (Dark/Light mode).
+- Authentication Flow: Includes OTP-based inputs and verification screens for connecting voters to their identities.
+- Admin Portal / Dashboard: Dedicated login paths for administrators to manage elections.
+- Candidate Discovery: Screens where voters can view candidates, specifically designed to filter or display candidates based on location.
+- Live Results & Analytics: A standalone dashboard showing real-time vote distribution using charts.
+- Secure Voting Interface: The actual polling booth UI for a voter to cast and lock their vote once verified.
+
+
+================================================================================
+Backend Schema Analysis
+================================================================================
+
+Based on the provided ER Diagram/Schema, is every feature included? 
+Answer: No. While the core foundation is there, several features are MISSING or critically flawed based on your frontend requirements. 
+
+Here is the exact breakdown:
+
+1. WHAT IS SUPPORTED:
+- Voter Verification: Supported via the `USER_AUTHENTICATION` table (tracks OTPs) and the `VOTER` table (Adhar Hash, Voting Status).
+- Election Core Data: Handled by the `ELECTION` table (Dates, Status).
+- Candidate Management: Handled by `CANDIDATE` table.
+- Results: The `RESULT` table caches total votes and winning candidates.
+
+2. WHAT IS MISSING OR FLAWED (ACTION REQUIRED):
+- MISSING - Location-Based Display: The frontend requires a "location-based candidate display" feature (based on our previous chats). Neither the `VOTER`, `CANDIDATE`, nor `ELECTION` tables have a "Location", "Constituency", or "District" field. You cannot filter candidates by location right now.
+- MISSING - Admin Management: There is an admin login option on the frontend, but zero tables in your schema for `ADMIN_USERS` or role-based access control. You need a way to authenticate admins separately from voters.
+- CRITICAL FLAW - Lack of Anonymity: Your `VOTE_LOCK` and `VOTE` tables both connect the voter directly to the candidate (`VoterID` + `CandidateID` in same table). In a real election system, this destroys the "Secret Ballot" rule. 
+  -> Fix: The `VOTE_LOCK` table should simply record THAT a voter voted (VoterID + ElectionID) to prevent double voting. The `VOTE` table should ONLY record the cast vote (ElectionID + CandidateID) WITHOUT the VoterID attached to it. 
