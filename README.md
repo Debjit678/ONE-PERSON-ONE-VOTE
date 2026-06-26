@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SmartVote
 
-## Getting Started
+## Overview
 
-First, run the development server:
+SmartVote is a secure digital voting system designed to promote fair and transparent elections by ensuring the principle of "One Person, One Vote." The system uses unique identity verification and OTP-based mobile authentication to prevent duplicate and fraudulent voting while maintaining voter privacy through secure vote management.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Built as an academic full-stack project, SmartVote demonstrates the integration of authentication, database management, and secure voting mechanisms to provide a reliable and scalable digital election platform for institutions and organizations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Key Features: 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Secure voter registration and authentication
+2. OTP-based identity verification
+3. One-person-one-vote enforcement
+4. Anonymous and secure vote storage
+5. Candidate and election management
+6. Automated vote counting and result generation
+7. Fraud prevention through vote locking
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack: 
 
-## Learn More
+Frontend: React.js
+Backend: Node.js & Express.js
+Database: MySQL
+Authentication: OTP Verification
+Version Control: Git & GitHub
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Screenshots: 
+<img width="849" height="436" alt="image" src="https://github.com/user-attachments/assets/a9e58155-6de3-4a65-8707-3201aa290423" />
+<img width="848" height="411" alt="image" src="https://github.com/user-attachments/assets/94392930-733f-4096-8c32-8b6f9b1fa359" />
+<img width="886" height="565" alt="image" src="https://github.com/user-attachments/assets/10dbe3ab-c057-46f7-83f1-be21c47d3e6a" />
+<img width="886" height="477" alt="image" src="https://github.com/user-attachments/assets/ae7b45ea-dabe-4874-b879-bf20c9135188" />
+  <img width="886" height="620" alt="image" src="https://github.com/user-attachments/assets/469fd727-ec2b-498b-9b7f-89a1890888cb" />
